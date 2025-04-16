@@ -1,0 +1,103 @@
+
+model{
+gamma ~dbeta(0.5,0.5)
+for( j in 1:10){
+
+k[j] ~ dbeta(0.5,0.5)
+tau[j]<- ((1-k[j])*(1-gamma))/(k[j]*gamma)
+eta1[j]<-1/tau[j]
+eta2[j]<-eta1[j]/(1+eta1[j])
+}
+
+beta1[1:2] ~ dmnorm(mu[],z1[,])
+mu[1]<-0
+mu[2]<-0
+
+z1[1,1]<-inprod(X1[,1],X1[,1])*tau[1]
+z1[1,2]<-inprod(X1[,1],X1[,2])*tau[1]
+
+z1[2,1]<-inprod(X1[,2],X1[,1])*tau[1]
+z1[2,2]<-inprod(X1[,2],X1[,2])*tau[1]
+
+
+beta2[1:2] ~ dmnorm(mu[],z2[,])
+
+z2[1,1]<-inprod(X2[,1],X2[,1])*tau[2]
+z2[1,2]<-inprod(X2[,1],X2[,2])*tau[2]
+
+z2[2,1]<-inprod(X2[,2],X2[,1])*tau[2]
+z2[2,2]<-inprod(X2[,2],X2[,2])*tau[2]
+
+beta3[1:2] ~ dmnorm(mu[],z3[,])
+
+z3[1,1]<-inprod(X3[,1],X3[,1])*tau[3]
+z3[1,2]<-inprod(X3[,1],X3[,2])*tau[3]
+
+z3[2,1]<-inprod(X3[,2],X3[,1])*tau[3]
+z3[2,2]<-inprod(X3[,2],X3[,2])*tau[3]
+
+
+beta4[1:2] ~ dmnorm(mu[],z4[,])
+
+z4[1,1]<-inprod(X4[,1],X4[,1])*tau[4]
+z4[1,2]<-inprod(X4[,1],X4[,2])*tau[4]
+
+z4[2,1]<-inprod(X4[,2],X4[,1])*tau[4]
+z4[2,2]<-inprod(X4[,2],X4[,2])*tau[4]
+
+
+beta5[1:2] ~ dmnorm(mu[],z5[,])
+
+z5[1,1]<-inprod(X5[,1],X5[,1])*tau[5]
+z5[1,2]<-inprod(X5[,1],X5[,2])*tau[5]
+
+z5[2,1]<-inprod(X5[,2],X5[,1])*tau[5]
+z5[2,2]<-inprod(X5[,2],X5[,2])*tau[5]
+
+beta6[1:2] ~ dmnorm(mu[],z6[,])
+
+z6[1,1]<-inprod(X6[,1],X6[,1])*tau[6]
+z6[1,2]<-inprod(X6[,1],X6[,2])*tau[6]
+
+z6[2,1]<-inprod(X6[,2],X6[,1])*tau[6]
+z6[2,2]<-inprod(X6[,2],X6[,2])*tau[6]
+
+beta7[1:2] ~ dmnorm(mu[],z7[,])
+
+z7[1,1]<-inprod(X7[,1],X7[,1])*tau[7]
+z7[1,2]<-inprod(X7[,1],X7[,2])*tau[7]
+
+z7[2,1]<-inprod(X7[,2],X7[,1])*tau[7]
+z7[2,2]<-inprod(X7[,2],X7[,2])*tau[7]
+
+beta8[1:2] ~ dmnorm(mu[],z8[,])
+
+z8[1,1]<-inprod(X8[,1],X8[,1])*tau[8]
+z8[1,2]<-inprod(X8[,1],X8[,2])*tau[8]
+
+z8[2,1]<-inprod(X8[,2],X8[,1])*tau[8]
+z8[2,2]<-inprod(X8[,2],X8[,2])*tau[8]
+
+beta9[1:2] ~ dmnorm(mu[],z9[,])
+
+z9[1,1]<-inprod(X9[,1],X9[,1])*tau[9]
+z9[1,2]<-inprod(X9[,1],X9[,2])*tau[9]
+
+z9[2,1]<-inprod(X9[,2],X9[,1])*tau[9]
+z9[2,2]<-inprod(X9[,2],X9[,2])*tau[9]
+
+beta10[1:2] ~ dmnorm(mu[],z10[,])
+
+z10[1,1]<-inprod(X10[,1],X10[,1])*tau[10]
+z10[1,2]<-inprod(X10[,1],X10[,2])*tau[10]
+
+z10[2,1]<-inprod(X10[,2],X10[,1])*tau[10]
+z10[2,2]<-inprod(X10[,2],X10[,2])*tau[10]
+
+
+for(i in 1:n){
+y[i] ~ dnorm(theta[i],1)
+theta[i]<-inprod(beta1[],X1[i,])+inprod(beta2[],X2[i,])+inprod(beta3[],X3[i,])+inprod(beta4[],X4[i,])+inprod(beta5[],X5[i,])
++inprod(beta6[],X6[i,])+inprod(beta7[],X7[i,])+inprod(beta8[],X8[i,])+inprod(beta9[],X9[i,])+inprod(beta10[],X10[i,])}
+
+}
