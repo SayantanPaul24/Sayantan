@@ -1,0 +1,127 @@
+
+model{
+gamma ~dbeta(0.5,0.5)
+for( j in 1:5){
+
+k[j] ~ dbeta(0.5,0.5)
+tau[j]<- ((1-k[j])*(1-gamma))/(k[j]*gamma)
+eta1[j]<-1/tau[j]
+eta2[j]<-eta1[j]/(1+eta1[j])
+}
+
+beta1[1:4] ~ dmnorm(mu1[],z1[,])
+mu1[1]<-0
+mu1[2]<-0
+mu1[3]<-0
+mu1[4]<-0
+z1[1,1]<-inprod(x1[,1],x1[,1])*tau[1]
+z1[1,2]<-inprod(x1[,1],x1[,2])*tau[1]
+z1[1,3]<-inprod(x1[,1],x1[,3])*tau[1]
+z1[1,4]<-inprod(x1[,1],x1[,4])*tau[1]
+z1[2,1]<-inprod(x1[,2],x1[,1])*tau[1]
+z1[2,2]<-inprod(x1[,2],x1[,2])*tau[1]
+z1[2,3]<-inprod(x1[,2],x1[,3])*tau[1]
+z1[2,4]<-inprod(x1[,2],x1[,4])*tau[1]
+z1[3,1]<-inprod(x1[,3],x1[,1])*tau[1]
+z1[3,2]<-inprod(x1[,3],x1[,2])*tau[1]
+z1[3,3]<-inprod(x1[,3],x1[,3])*tau[1]
+z1[3,4]<-inprod(x1[,3],x1[,4])*tau[1]
+z1[4,1]<-inprod(x1[,4],x1[,1])*tau[1]
+z1[4,2]<-inprod(x1[,4],x1[,2])*tau[1]
+z1[4,3]<-inprod(x1[,4],x1[,3])*tau[1]
+z1[4,4]<-inprod(x1[,4],x1[,4])*tau[1]
+
+beta2[1:4] ~ dmnorm(mu2[],z2[,])
+mu2[1]<-0
+mu2[2]<-0
+mu2[3]<-0
+mu2[4]<-0
+z2[1,1]<-inprod(x2[,1],x2[,1])*tau[2]
+z2[1,2]<-inprod(x2[,1],x2[,2])*tau[2]
+z2[1,3]<-inprod(x2[,1],x2[,3])*tau[2]
+z2[1,4]<-inprod(x2[,1],x2[,4])*tau[2]
+z2[2,1]<-inprod(x2[,2],x2[,1])*tau[2]
+z2[2,2]<-inprod(x2[,2],x2[,2])*tau[2]
+z2[2,3]<-inprod(x2[,2],x2[,3])*tau[2]
+z2[2,4]<-inprod(x2[,2],x2[,4])*tau[2]
+z2[3,1]<-inprod(x2[,3],x2[,1])*tau[2]
+z2[3,2]<-inprod(x2[,3],x2[,2])*tau[2]
+z2[3,3]<-inprod(x2[,3],x2[,3])*tau[2]
+z2[3,4]<-inprod(x2[,3],x2[,4])*tau[2]
+z2[4,1]<-inprod(x2[,4],x2[,1])*tau[2]
+z2[4,2]<-inprod(x2[,4],x2[,2])*tau[2]
+z2[4,3]<-inprod(x2[,4],x2[,3])*tau[2]
+z2[4,4]<-inprod(x2[,4],x2[,4])*tau[2]
+
+beta3[1:4] ~ dmnorm(mu3[],z3[,])
+mu3[1]<-0
+mu3[2]<-0
+mu3[3]<-0
+mu3[4]<-0
+z3[1,1]<-inprod(x3[,1],x3[,1])*tau[3]
+z3[1,2]<-inprod(x3[,1],x3[,2])*tau[3]
+z3[1,3]<-inprod(x3[,1],x3[,3])*tau[3]
+z3[1,4]<-inprod(x3[,1],x3[,4])*tau[3]
+z3[2,1]<-inprod(x3[,2],x3[,1])*tau[3]
+z3[2,2]<-inprod(x3[,2],x3[,2])*tau[3]
+z3[2,3]<-inprod(x3[,2],x3[,3])*tau[3]
+z3[2,4]<-inprod(x3[,2],x3[,4])*tau[3]
+z3[3,1]<-inprod(x3[,3],x3[,1])*tau[3]
+z3[3,2]<-inprod(x3[,3],x3[,2])*tau[3]
+z3[3,3]<-inprod(x3[,3],x3[,3])*tau[3]
+z3[3,4]<-inprod(x3[,3],x3[,4])*tau[3]
+z3[4,1]<-inprod(x3[,4],x3[,1])*tau[3]
+z3[4,2]<-inprod(x3[,4],x3[,2])*tau[3]
+z3[4,3]<-inprod(x3[,4],x3[,3])*tau[3]
+z3[4,4]<-inprod(x3[,4],x3[,4])*tau[3]
+
+beta4[1:2] ~ dmnorm(mu4[],z4[,])
+
+mu4[1]<-0
+mu4[2]<-0
+mu4[3]<-0
+mu4[4]<-0
+z4[1,1]<-inprod(x4[,1],x4[,1])*tau[4]
+z4[1,2]<-inprod(x4[,1],x4[,2])*tau[4]
+z4[1,3]<-inprod(x4[,1],x4[,3])*tau[4]
+z4[1,4]<-inprod(x4[,1],x4[,4])*tau[4]
+z4[2,1]<-inprod(x4[,2],x4[,1])*tau[4]
+z4[2,2]<-inprod(x4[,2],x4[,2])*tau[4]
+z4[2,3]<-inprod(x4[,2],x4[,3])*tau[4]
+z4[2,4]<-inprod(x4[,2],x4[,4])*tau[4]
+z4[3,1]<-inprod(x4[,3],x4[,1])*tau[4]
+z4[3,2]<-inprod(x4[,3],x4[,2])*tau[4]
+z4[3,3]<-inprod(x4[,3],x4[,3])*tau[4]
+z4[3,4]<-inprod(x4[,3],x4[,4])*tau[4]
+z4[4,1]<-inprod(x4[,4],x4[,1])*tau[4]
+z4[4,2]<-inprod(x4[,4],x4[,2])*tau[4]
+z4[4,3]<-inprod(x4[,4],x4[,3])*tau[4]
+z4[4,4]<-inprod(x4[,4],x4[,4])*tau[4]
+
+beta5[1:2] ~ dmnorm(mu3[],z5[,])
+
+z5[1,1]<-inprod(x5[,1],x5[,1])*tau[5]
+z5[1,2]<-inprod(x5[,1],x5[,2])*tau[5]
+z5[1,3]<-inprod(x5[,1],x5[,3])*tau[5]
+z5[1,4]<-inprod(x5[,1],x5[,4])*tau[5]
+z5[2,1]<-inprod(x5[,2],x5[,1])*tau[5]
+z5[2,2]<-inprod(x5[,2],x5[,2])*tau[5]
+z5[2,3]<-inprod(x5[,2],x5[,3])*tau[5]
+z5[2,4]<-inprod(x5[,2],x5[,4])*tau[5]
+z5[3,1]<-inprod(x5[,3],x5[,1])*tau[5]
+z5[3,2]<-inprod(x5[,3],x5[,2])*tau[5]
+z5[3,3]<-inprod(x5[,3],x5[,3])*tau[5]
+z5[3,4]<-inprod(x5[,3],x5[,4])*tau[5]
+z5[4,1]<-inprod(x5[,4],x5[,1])*tau[5]
+z5[4,2]<-inprod(x5[,4],x5[,2])*tau[5]
+z5[4,3]<-inprod(x5[,4],x5[,3])*tau[5]
+z5[4,4]<-inprod(x5[,4],x5[,4])*tau[5]
+
+
+
+
+for(i in 1:n){
+y[i] ~ dnorm(theta[i],1)
+theta[i]<-inprod(beta1[],x1[i,])+inprod(beta2[],x2[i,])+inprod(beta3[],x3[i,])+inprod(beta4[],x4[i,])+inprod(beta5[],x5[i,])
+}
+}
