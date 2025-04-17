@@ -1,0 +1,64 @@
+
+
+model{
+gamma <-0.02899
+for( j in 1:5){
+
+k[j] ~ dbeta(0.5,0.5)
+tau[j]<- ((1-k[j])*(1-gamma))/(k[j]*gamma)
+eta1[j]<-1/tau[j]
+eta2[j]<-eta1[j]/(1+eta1[j])
+}
+
+beta1[1:2] ~ dmnorm(mu[],z1[,])
+mu[1]<-0
+mu[2]<-0
+
+z1[1,1]<-tau[1]
+z1[1,2]<-0
+
+z1[2,1]<-0
+z1[2,2]<-tau[1]
+
+
+beta2[1:2] ~ dmnorm(mu[],z2[,])
+
+z2[1,1]<-tau[2]
+z2[1,2]<-0
+
+z2[2,1]<-0
+z2[2,2]<-tau[2]
+
+beta3[1:2] ~ dmnorm(mu[],z3[,])
+
+z3[1,1]<-tau[3]
+z3[1,2]<-0
+
+z3[2,1]<-0
+z3[2,2]<-tau[3]
+
+
+beta4[1:2] ~ dmnorm(mu[],z4[,])
+
+z4[1,1]<-tau[4]
+z4[1,2]<-0
+
+z4[2,1]<-0
+z4[2,2]<-tau[4]
+
+
+beta5[1:2] ~ dmnorm(mu[],z5[,])
+
+z5[1,1]<-tau[5]
+z5[1,2]<-0
+
+z5[2,1]<-0
+z5[2,2]<-tau[5]
+
+
+for(i in 1:n){
+y[i] ~ dnorm(theta[i],1)
+theta[i]<-inprod(beta1[],X1[i,])+inprod(beta2[],X2[i,])+inprod(beta3[],X3[i,])+inprod(beta4[],X4[i,])+inprod(beta5[],X5[i,])
+}
+
+}
